@@ -1,0 +1,8 @@
+{
+  "parent": "bows:item/stone_bow",
+  "textures": {
+    "layer0": "bows:item/bow_pulling_1",
+    "layer1": "bows:item/stone_bow_standby",
+    "layer2": "bows:item/arrow_pulling_1"
+  }
+}
