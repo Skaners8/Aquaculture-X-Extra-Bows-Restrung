@@ -3,18 +3,15 @@ package net.flick.aquaculture_extra_bows.mixin;
 
 import com.teammetallurgy.aquaculture.init.AquaItems;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.ModifyDefaultComponentsEvent;
 
-import com.teammetallurgy.aquaculture.item.neptunium.NeptuniumBow;
-
 import static net.flick.aquaculture_extra_bows.AquacultureExtraBows.MOD_ID;
 
 @EventBusSubscriber(modid = MOD_ID)
-public class Events {
+public class BowDurabilityTweak {
     @SubscribeEvent
     public static void onModifyDefaultComponents(ModifyDefaultComponentsEvent event) {
         event.modify(Items.BOW, builder -> {
@@ -25,3 +22,4 @@ public class Events {
         });
     }
 }
+
