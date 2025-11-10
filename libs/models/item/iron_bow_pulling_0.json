@@ -1,8 +1,0 @@
-{
-  "parent": "bows:item/iron_bow",
-  "textures": {
-    "layer0": "bows:item/bow_pulling_0",
-    "layer1": "bows:item/iron_bow_standby",
-    "layer2": "bows:item/arrow_pulling_0"
-  }
-}

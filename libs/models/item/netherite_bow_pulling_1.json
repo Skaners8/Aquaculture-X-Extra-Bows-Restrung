@@ -1,8 +1,0 @@
-{
-  "parent": "bows:item/netherite_bow",
-  "textures": {
-    "layer0": "bows:item/bow_alt_pulling_1",
-    "layer1": "bows:item/netherite_bow_standby",
-    "layer2": "bows:item/arrow_pulling_1"
-  }
-}

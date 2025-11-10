@@ -11,10 +11,15 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.List;
 
 public class ModItems {
+
+
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(AquacultureExtraBows.MOD_ID);
 
-    public static final DeferredItem<Item> COPPER_BOW = ITEMS.register("cooper_bow",
-            () -> new BowItem(new Item.Properties().durability(500)));
+    public static final DeferredItem<Item> COPPER_BOW = ITEMS.register("copper_bow",
+            () -> new BowItem(new Item.Properties().durability(191)));
+
+    public static final DeferredItem<Item> IRON_BOW = ITEMS.register("iron_bow",
+            () -> new BowItem(new Item.Properties().durability(250)));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

@@ -1,9 +1,13 @@
 package net.flick.aquaculture_extra_bows;
 
+
+import com.teammetallurgy.aquaculture.api.AquacultureAPI;
 import net.flick.aquaculture_extra_bows.component.ModDataComponents;
 import net.flick.aquaculture_extra_bows.item.custom.ModCreativeModeTabs;
 import net.flick.aquaculture_extra_bows.item.custom.ModItems;
 import net.flick.aquaculture_extra_bows.util.ModItemProperties;
+import net.minecraft.world.item.BowItem;
+import net.minecraft.world.item.Item;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -23,6 +27,10 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+
+
+
+import com.teammetallurgy.aquaculture.init.AquaItems;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(AquacultureExtraBows.MOD_ID)

@@ -1,7 +1,0 @@
-{
-  "parent": "bows:item/netherite_crossbow",
-  "textures": {
-    "layer0": "bows:item/netherite_crossbow",
-    "layer1": "bows:item/crossbow_alt_pulling_2"
-  }
-}

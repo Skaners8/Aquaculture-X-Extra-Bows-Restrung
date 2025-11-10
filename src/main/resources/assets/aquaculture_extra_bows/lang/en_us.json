@@ -1,3 +1,9 @@
 {
-  "item.aquaculture_extra_bows.copper_bow": "Copper Bow"
+  "item.minecraft.bow": "Wooden Bow",
+  "item.aquaculture_extra_bows.copper_bow": "Copper Bow",
+  "item.aquaculture_extra_bows.iron_bow": "Iron Bow",
+
+  "creativetab.aquaculture_extra_bows.extra_bows":  "Extra Bows",
+
+  "itemGroup.aquaculture_extra_bows": "Aquaculture Extra Bows"
 }

@@ -10,7 +10,9 @@ import net.minecraft.world.item.Item;
 public class ModItemProperties {
     public static void addCustomItemProperties() {
         makeCustomBow(ModItems.COPPER_BOW.get());
+        makeCustomBow(ModItems.IRON_BOW.get());
     }
+
 
     private static void makeCustomBow(Item item) {
         ItemProperties.register(item, ResourceLocation.withDefaultNamespace("pull"), (p_344163_, p_344164_, p_344165_, p_344166_) -> {
