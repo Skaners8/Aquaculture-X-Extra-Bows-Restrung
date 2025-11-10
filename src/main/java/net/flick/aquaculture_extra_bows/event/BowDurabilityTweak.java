@@ -1,4 +1,4 @@
-package net.flick.aquaculture_extra_bows.mixin;
+package net.flick.aquaculture_extra_bows.event;
 
 
 import com.teammetallurgy.aquaculture.init.AquaItems;

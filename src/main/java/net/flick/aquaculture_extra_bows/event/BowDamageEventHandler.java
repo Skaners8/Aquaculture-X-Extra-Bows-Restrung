@@ -1,7 +1,6 @@
-package net.flick.aquaculture_extra_bows.mixin;
+package net.flick.aquaculture_extra_bows.event;
 
 import com.teammetallurgy.aquaculture.init.AquaItems;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.item.Item;
@@ -22,7 +21,7 @@ import static net.flick.aquaculture_extra_bows.AquacultureExtraBows.MOD_ID;
 
 /**
  * Handles custom arrow damage for different bows.
- * NeoForge 1.21.1 compatible, safe with DeferredHolder.
+ * All custom bows behave like vanilla arrows (randomized damage).
  */
 @EventBusSubscriber(modid = MOD_ID)
 public class BowDamageEventHandler {
@@ -37,10 +36,7 @@ public class BowDamageEventHandler {
         if (initialized) return;
         initialized = true;
 
-        // Neptunium Bow +50%
-        BOW_MULTIPLIERS.put(AquaItems.NEPTUNIUM_BOW.get(), 18.75);
-
-        // Exemples d’autres arcs custom
+        // Arcs custom
         BOW_MULTIPLIERS.put(net.flick.aquaculture_extra_bows.item.custom.ModItems.COPPER_BOW.get(), 1.25);
         BOW_MULTIPLIERS.put(net.flick.aquaculture_extra_bows.item.custom.ModItems.IRON_BOW.get(), 1.5);
     }
@@ -68,13 +64,13 @@ public class BowDamageEventHandler {
     // ----------------------------
     @SubscribeEvent
     public static void onArrowLoose(ArrowLooseEvent event) {
-        initMultipliers(); // safe lazy init
+        initMultipliers();
 
         ItemStack bow = event.getBow();
         if (bow == null) return;
 
         double multiplier = BOW_MULTIPLIERS.getOrDefault(bow.getItem(), 0.0);
-        if (multiplier <= 0) return; // ignore bows not in our map
+        if (multiplier <= 0) return;
 
         LivingEntity shooter = event.getEntity();
         if (shooter == null) return;
@@ -95,16 +91,18 @@ public class BowDamageEventHandler {
     // ----------------------------
     @SubscribeEvent
     public static void onEntityJoinLevel(EntityJoinLevelEvent event) {
-        Entity entity = event.getEntity();
-        Level level = (Level) event.getLevel();
-        if (level.isClientSide()) return;
-
-        if (!(entity instanceof AbstractArrow arrow)) return;
+        if (!(event.getEntity() instanceof AbstractArrow arrow)) return;
         if (!(arrow.getOwner() instanceof LivingEntity owner)) return;
 
         UUID ownerUUID = owner.getUUID();
         PendingShot ps = PENDING_SHOTS.get(ownerUUID);
         if (ps == null) return;
+
+        Level level = (Level) event.getLevel();
+        if (level.isClientSide()) {
+            PENDING_SHOTS.remove(ownerUUID);
+            return;
+        }
 
         long currentTick = level.getGameTime();
         if (currentTick - ps.tick > VALID_TICKS) {
@@ -112,10 +110,12 @@ public class BowDamageEventHandler {
             return;
         }
 
-        // Apply bow multiplier
+        // ----------------------------
+        // Apply multiplier and Power
+        // We don't remove random, vanilla behavior remains
+        // ----------------------------
         double damage = arrow.getBaseDamage() * ps.multiplier;
 
-        // Apply Power enchantment scaling (Power I ~ +50%, II ~ +75%, etc.)
         if (ps.powerLevel > 0) {
             double powerMultiplier = 1.0 + 0.25 * (ps.powerLevel + 1);
             damage *= powerMultiplier;
@@ -123,7 +123,7 @@ public class BowDamageEventHandler {
 
         arrow.setBaseDamage(damage);
 
-        // Remove pending shot to avoid double application
+        // Remove pending shot
         PENDING_SHOTS.remove(ownerUUID);
     }
 }
