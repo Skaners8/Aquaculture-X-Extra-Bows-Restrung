@@ -3,9 +3,12 @@
   "minVersion": "0.8",
   "package": "net.flick.aquaculture_extra_bows.mixin",
   "compatibilityLevel": "JAVA_21",
+  "refmap": "flick.aquaculture_extra_bows.mixins.refmap.json",
   "mixins": [
     "NeptuniumBowMixin"
   ],
   "client": [],
-  "server": []
+  "injectors": {
+    "defaultRequire": 1
+  }
 }
