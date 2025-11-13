@@ -19,7 +19,7 @@ import static com.mojang.text2speech.Narrator.LOGGER;
 @Mixin(NeptuniumBow.class)
 public abstract class NeptuniumBowMixin {
 
-    private static final double NEPTUNIUM_MULTIPLIER = 18.75;
+    private static final double NEPTUNIUM_MULTIPLIER = 1.875;
 
     @Inject(method = "customArrow", at = @At("RETURN"), cancellable = true)
     private void injectCustomArrow(AbstractArrow arrowEntity, ItemStack projectileStack, ItemStack weaponStack, CallbackInfoReturnable<AbstractArrow> cir) {
@@ -33,10 +33,6 @@ public abstract class NeptuniumBowMixin {
 
 
         double damage = arrow.getBaseDamage() * NEPTUNIUM_MULTIPLIER;
-        if (powerLevel > 0) {
-            double powerMultiplier = 1.0 + 0.25 * (powerLevel + 1);
-            damage *= powerMultiplier;
-        }
 
         arrow.setBaseDamage(damage);
         // Log pour vérifier le mixin
