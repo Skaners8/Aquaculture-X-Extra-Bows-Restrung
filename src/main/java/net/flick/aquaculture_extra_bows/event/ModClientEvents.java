@@ -20,6 +20,7 @@ public class ModClientEvents {
             // Vérifie à ce moment seulement, quand tout est enregistré
             if (current == ModItems.COPPER_BOW.get()
                     || current == ModItems.IRON_BOW.get()
+                    || current == ModItems.GOLDEN_BOW.get()
                     ) {
 
                 float fovModifier = 1f;

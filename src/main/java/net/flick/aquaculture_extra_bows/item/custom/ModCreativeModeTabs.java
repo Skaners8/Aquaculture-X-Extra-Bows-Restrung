@@ -22,6 +22,7 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.aquaculture_extra_bows.extra_bows"))
                     .displayItems((itemDisplayParameters, output)-> {
 
+                        output.accept(ModItems.GOLDEN_BOW);
                         output.accept(ModItems.COPPER_BOW);
                         output.accept(ModItems.IRON_BOW);
 

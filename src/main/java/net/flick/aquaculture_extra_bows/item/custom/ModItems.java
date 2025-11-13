@@ -15,6 +15,9 @@ public class ModItems {
 
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(AquacultureExtraBows.MOD_ID);
 
+    public static final DeferredItem<Item> GOLDEN_BOW = ITEMS.register("golden_bow",
+            () -> new BowItem(new Item.Properties().durability(32)));
+
     public static final DeferredItem<Item> COPPER_BOW = ITEMS.register("copper_bow",
             () -> new BowItem(new Item.Properties().durability(191)));
 

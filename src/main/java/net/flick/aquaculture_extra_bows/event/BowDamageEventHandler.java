@@ -37,8 +37,9 @@ public class BowDamageEventHandler {
         initialized = true;
 
         // Arcs custom
-        BOW_MULTIPLIERS.put(net.flick.aquaculture_extra_bows.item.custom.ModItems.COPPER_BOW.get(), 1.25);
-        BOW_MULTIPLIERS.put(net.flick.aquaculture_extra_bows.item.custom.ModItems.IRON_BOW.get(), 1.5);
+        BOW_MULTIPLIERS.put(net.flick.aquaculture_extra_bows.item.custom.ModItems.GOLDEN_BOW.get(), 1.0);
+        BOW_MULTIPLIERS.put(net.flick.aquaculture_extra_bows.item.custom.ModItems.COPPER_BOW.get(), 1.0);
+        BOW_MULTIPLIERS.put(net.flick.aquaculture_extra_bows.item.custom.ModItems.IRON_BOW.get(), 1.0);
     }
 
     // ----------------------------

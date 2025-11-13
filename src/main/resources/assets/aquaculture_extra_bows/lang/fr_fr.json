@@ -1,0 +1,10 @@
+{
+  "item.minecraft.bow": "Arc en bois",
+  "item.aquaculture_extra_bows.golden_bow": "Arc en or",
+  "item.aquaculture_extra_bows.copper_bow": "Arc en cuivre",
+  "item.aquaculture_extra_bows.iron_bow": "Arc en fer",
+
+  "creativetab.aquaculture_extra_bows.extra_bows":  "Extra Bows",
+
+  "itemGroup.aquaculture_extra_bows": "Aquaculture Extra Bows"
+}
