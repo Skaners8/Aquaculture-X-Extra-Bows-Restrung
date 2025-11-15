@@ -31,21 +31,21 @@
             "predicate": {
                 "pulling": 1
             },
-            "model": "aquaculture_extra_bows:item/iron_bow_pulling_0"
+            "model": "aquaculture_extra_bows:item/golden_bow_pulling_0"
         },
         {
             "predicate": {
                 "pulling": 1,
                 "pull": 0.65
             },
-            "model": "aquaculture_extra_bows:item/iron_bow_pulling_1"
+            "model": "aquaculture_extra_bows:item/golden_bow_pulling_1"
         },
         {
             "predicate": {
                 "pulling": 1,
                 "pull": 0.9
             },
-            "model": "aquaculture_extra_bows:item/iron_bow_pulling_2"
+            "model": "aquaculture_extra_bows:item/golden_bow_pulling_2"
         }
     ]
 }

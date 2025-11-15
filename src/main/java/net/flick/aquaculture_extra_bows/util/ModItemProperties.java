@@ -9,6 +9,7 @@ import net.minecraft.world.item.Item;
 
 public class ModItemProperties {
     public static void addCustomItemProperties() {
+        makeCustomBow(ModItems.GOLDEN_BOW.get());
         makeCustomBow(ModItems.COPPER_BOW.get());
         makeCustomBow(ModItems.IRON_BOW.get());
     }
