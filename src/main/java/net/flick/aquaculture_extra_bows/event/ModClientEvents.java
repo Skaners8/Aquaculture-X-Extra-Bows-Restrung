@@ -1,5 +1,6 @@
 package net.flick.aquaculture_extra_bows.event;
 
+import com.teammetallurgy.aquaculture.init.AquaItems;
 import net.flick.aquaculture_extra_bows.AquacultureExtraBows;
 import net.flick.aquaculture_extra_bows.item.custom.ModItems;
 import net.minecraft.world.item.Item;
@@ -21,6 +22,7 @@ public class ModClientEvents {
             if (current == ModItems.COPPER_BOW.get()
                     || current == ModItems.IRON_BOW.get()
                     || current == ModItems.GOLDEN_BOW.get()
+                    || current == AquaItems.NEPTUNIUM_BOW.get()
                     ) {
 
                 float fovModifier = 1f;
