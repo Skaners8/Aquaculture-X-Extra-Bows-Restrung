@@ -22,7 +22,9 @@ public class ModClientEvents {
             if (current == ModItems.COPPER_BOW.get()
                     || current == ModItems.IRON_BOW.get()
                     || current == ModItems.GOLDEN_BOW.get()
+                    || current == ModItems.DIAMOND_BOW.get()
                     || current == AquaItems.NEPTUNIUM_BOW.get()
+                    || current == ModItems.NETHERITE_BOW.get()
                     ) {
 
                 float fovModifier = 1f;

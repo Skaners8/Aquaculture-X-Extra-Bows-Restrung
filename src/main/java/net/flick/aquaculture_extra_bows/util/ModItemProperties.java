@@ -12,6 +12,8 @@ public class ModItemProperties {
         makeCustomBow(ModItems.GOLDEN_BOW.get());
         makeCustomBow(ModItems.COPPER_BOW.get());
         makeCustomBow(ModItems.IRON_BOW.get());
+        makeCustomBow(ModItems.DIAMOND_BOW.get());
+        makeCustomBow(ModItems.NETHERITE_BOW.get());
     }
 
 

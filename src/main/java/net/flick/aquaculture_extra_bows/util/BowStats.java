@@ -7,23 +7,15 @@ import net.minecraft.world.item.Item;
 public class BowStats {
 
     public static double getMultiplier(Item bow) {
+        String id = bow.toString().toLowerCase();
 
-        // WOOD + GOLD = identical power
-        //if (bow == ModItems.WOODEN_BOW.get()) return 0.80;
-        if (bow == ModItems.GOLDEN_BOW.get()) return 0.80;
+        if (id.contains("golden_bow")) return 0.78;
+        if (id.contains("copper_bow")) return 1.11;
+        if (id.contains("iron_bow")) return 1.22;
+        if (id.contains("diamond_bow")) return 1.44;
+        if (id.contains("neptunium_bow")) return 1.56;
+        if (id.contains("netherite_bow")) return 1.67;
 
-        // COPPER (between stone and iron)
-        if (bow == ModItems.COPPER_BOW.get()) return 1.10;
-
-        // STANDARD TIERS
-        if (bow == ModItems.IRON_BOW.get()) return 1.20;
-        //if (bow == ModItems.DIAMOND_BOW.get()) return 1.40;
-
-        // AQUALCULTURE
-        if (bow == AquaItems.NEPTUNIUM_BOW.get()) return 1.50;
-
-        //if (bow == ModItems.NETHERRITE_BOW.get()) return 1.60;
-
-        return 0.8; // default
+        return 0.80;
     }
 }

@@ -25,6 +25,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.GOLDEN_BOW);
                         output.accept(ModItems.COPPER_BOW);
                         output.accept(ModItems.IRON_BOW);
+                        output.accept(ModItems.DIAMOND_BOW);
+                        output.accept(ModItems.NETHERITE_BOW);
 
                     }).build());
 

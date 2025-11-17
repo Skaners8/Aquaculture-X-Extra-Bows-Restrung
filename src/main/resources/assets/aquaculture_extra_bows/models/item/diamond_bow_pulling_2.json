@@ -1,0 +1,8 @@
+{
+  "parent": "aquaculture_extra_bows:item/diamond_bow",
+  "textures": {
+    "layer0": "aquaculture_extra_bows:item/bow_pulling_2",
+    "layer1": "aquaculture_extra_bows:item/diamond_bow_pulling",
+    "layer2": "aquaculture_extra_bows:item/arrow_pulling_2"
+  }
+}
