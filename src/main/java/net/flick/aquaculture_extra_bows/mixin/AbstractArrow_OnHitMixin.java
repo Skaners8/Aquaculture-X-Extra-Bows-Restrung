@@ -3,6 +3,7 @@ package net.flick.aquaculture_extra_bows.mixin;
 import net.flick.aquaculture_extra_bows.util.BowStats;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -13,54 +14,70 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.core.component.PatchedDataComponentMap;
+import net.minecraft.core.component.DataComponentMap;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.WeakHashMap;
+
 @Mixin(AbstractArrow.class)
 public abstract class AbstractArrow_OnHitMixin {
 
-    /**
-     * Apply BowStats and Power enchant BEFORE vanilla final damage.
-     */
+    @Shadow private ItemStack firedFromWeapon;
+
+    private static final WeakHashMap<AbstractArrow, ItemStack> ORIGINAL_WEAPONS = new WeakHashMap<>();
+
     @Inject(method = "onHitEntity", at = @At("HEAD"))
     private void aeb_applyCustomDamage(EntityHitResult hit, CallbackInfo ci) {
 
         AbstractArrow arrow = (AbstractArrow)(Object)this;
 
-        // server only
         if (arrow.level().isClientSide()) return;
 
         Entity shooter = arrow.getOwner();
         if (!(shooter instanceof LivingEntity living)) return;
 
-        // Ensure the shooter used a bow
         ItemStack bow = living.getMainHandItem();
         if (!(bow.getItem() instanceof BowItem)) return;
 
-        // =============== 1. BowStats multiplier ===============
-        double mult = BowStats.getMultiplier(bow.getItem());
+        double baseDamage = arrow.getBaseDamage();
 
-        // Vanilla baseDamage was already calculated earlier (velocity * 2)
-        double base = arrow.getBaseDamage();
+        // --- POWER LEVEL ---
+        int power = 0;
+        try {
+            Level lvl = arrow.level();
+            var registry = lvl.registryAccess().registryOrThrow(Registries.ENCHANTMENT);
+            Holder<Enchantment> powerHolder = registry.getHolderOrThrow(Enchantments.POWER);
+            power = EnchantmentHelper.getItemEnchantmentLevel(powerHolder, bow);
+        } catch (Throwable ignored) {}
 
-        double finalDamage = base * mult;
-
-        // =============== 2. Power enchantment (Sharpness-style) ===============
-        Level lvl = arrow.level();
-        var registry = lvl.registryAccess().registryOrThrow(Registries.ENCHANTMENT);
-
-        Holder<Enchantment> powerHolder = registry.getHolderOrThrow(Enchantments.POWER);
-        int power = EnchantmentHelper.getItemEnchantmentLevel(powerHolder, bow);
-
+        // --- RETIRER BONUS VANILLA ---
         if (power > 0) {
-            // Sharpness-style additive bonus:
-            double powerBonus = 1.0 + (power - 1) * 0.5;
-            finalDamage += powerBonus;
+            double vanillaPowerBonus = 0.5 * (power + 1);
+            baseDamage -= vanillaPowerBonus;
         }
 
-        // =============== 3. Apply deterministic final damage ===============
-        arrow.setBaseDamage(finalDamage);
+        // --- BOW MULTIPLIER ---
+        double scaledDamage = baseDamage * BowStats.getMultiplier(bow.getItem());
+
+        // --- BONUS CUSTOM POWER ---
+        double customBonus = 0;
+        if (power > 0) customBonus = 1 + (power - 1) * 0.5;
+
+        // --- APPLY FINAL DAMAGE ---
+        arrow.setBaseDamage(scaledDamage + customBonus);
+    }
+
+    @Inject(method = "onHitEntity", at = @At("TAIL"))
+    private void afterHit(EntityHitResult hit, CallbackInfo ci) {
+        AbstractArrow arrow = (AbstractArrow)(Object)this;
+        ItemStack original = ORIGINAL_WEAPONS.remove(arrow);
+        if (original != null) {
+            this.firedFromWeapon = original;
+        }
     }
 }

@@ -1,21 +1,14 @@
 package net.flick.aquaculture_extra_bows.item.custom;
 
 import net.flick.aquaculture_extra_bows.AquacultureExtraBows;
-import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 
-import java.util.List;
-import java.util.Set;
-
-
-public class ModItems {
+public class ModBowtems {
 
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(AquacultureExtraBows.MOD_ID);
 
