@@ -3,6 +3,7 @@ package net.flick.aquaculture_extra_bows;
 
 import com.teammetallurgy.aquaculture.api.AquacultureAPI;
 import net.flick.aquaculture_extra_bows.component.ModDataComponents;
+import net.flick.aquaculture_extra_bows.item.custom.ModBowtems;
 import net.flick.aquaculture_extra_bows.item.custom.ModCreativeModeTabs;
 import net.flick.aquaculture_extra_bows.item.custom.ModItems;
 import net.flick.aquaculture_extra_bows.util.ModItemProperties;
@@ -47,6 +48,8 @@ public class AquacultureExtraBows {
         ModCreativeModeTabs.register(modEventBus);
 
         ModItems.register(modEventBus);
+
+        ModBowtems.register(modEventBus);
 
         ModDataComponents.register(modEventBus);
 
