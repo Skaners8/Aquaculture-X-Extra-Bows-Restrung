@@ -1,7 +1,7 @@
 package net.flick.aquaculture_extra_bows.datagen;
 
 import net.flick.aquaculture_extra_bows.AquacultureExtraBows;
-import net.flick.aquaculture_extra_bows.loot.ModGlobalLootModifierProvider;
+import net.flick.aquaculture_extra_bows.datagen.ModGlobalLootModifierProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
