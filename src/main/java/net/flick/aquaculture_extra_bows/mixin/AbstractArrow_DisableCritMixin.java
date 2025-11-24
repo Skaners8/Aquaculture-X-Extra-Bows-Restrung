@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * We cancel setCritArrow(true) calls while allowing setCritArrow(false) (if ever used).
  */
 @Mixin(AbstractArrow.class)
-public abstract class AbstractArrowDisableCritMixin {
+public abstract class AbstractArrow_DisableCritMixin {
 
     @Inject(method = "setCritArrow", at = @At("HEAD"), cancellable = true)
     private void onSetCritArrow(boolean crit, CallbackInfo ci) {

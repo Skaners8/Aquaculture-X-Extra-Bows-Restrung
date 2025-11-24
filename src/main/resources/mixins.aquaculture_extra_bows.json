@@ -5,8 +5,8 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "NeptuniumBowMixin",
-    "AbstractArrowDisableCritMixin",
-    "AbstractArrow_OnHitMixin"
+    "AbstractArrow_DisableCritMixin",
+    "AbstractArrow_CustomDamageMixin"
   ],
   "client": [],
   "server": []

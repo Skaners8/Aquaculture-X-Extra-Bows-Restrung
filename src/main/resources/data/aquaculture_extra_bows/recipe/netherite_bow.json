@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "#": {
-      "tag": "c:ingots/gold"
+      "tag": "c:ingots/netherite"
     },
     "X": {
       "tag": "c:strings"
@@ -16,6 +16,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "aquaculture_extra_bows:golden_bow"
+    "id": "aquaculture_extra_bows:netherite_bow"
   }
 }
