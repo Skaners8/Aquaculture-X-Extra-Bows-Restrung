@@ -8,5 +8,7 @@
 
   "creativetab.aquaculture_extra_bows.extra_bows":  "Extra Bows",
 
-  "itemGroup.aquaculture_extra_bows": "Aquaculture Extra Bows"
+  "itemGroup.aquaculture_extra_bows": "Aquaculture Extra Bows",
+
+  "tooltip.aquaculture_extra_bows.copper_bow": "6 Attack Damage"
 }

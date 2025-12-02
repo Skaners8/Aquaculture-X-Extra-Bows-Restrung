@@ -6,7 +6,8 @@
   "mixins": [
     "NeptuniumBowMixin",
     "AbstractArrow_DisableCritMixin",
-    "AbstractArrow_CustomDamageMixin"
+    "AbstractArrow_CustomDamageMixin",
+    "NeptuniumBowTooltipMixin"
   ],
   "client": [],
   "server": []
