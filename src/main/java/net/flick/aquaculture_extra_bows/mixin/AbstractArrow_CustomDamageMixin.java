@@ -65,7 +65,16 @@ public abstract class AbstractArrow_CustomDamageMixin {
                 bow
         );
 
-        double damage = baseDamage + (power * 0.5);
+        double bonus;
+        if (power == 0) {
+            bonus = 0;
+        } else if (power <= 5) {
+            bonus = 1 + 0.5 * (power - 1);
+        } else {
+            bonus = 3 + 0.5 * (power - 8); // si tu veux continuer au delà de 8
+        }
+
+        double damage = baseDamage + bonus;
 
         //----- ARRONDI .0 / .5 -----
         damage = Math.round(damage * 2.0) / 2.0;
