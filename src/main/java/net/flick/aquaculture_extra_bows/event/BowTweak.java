@@ -1,10 +1,13 @@
 package net.flick.aquaculture_extra_bows.event;
 
 import com.teammetallurgy.aquaculture.init.AquaItems;
+import net.flick.aquaculture_extra_bows.item.custom.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.ModifyDefaultComponentsEvent;
@@ -26,6 +29,7 @@ public class BowTweak {
 
         event.modify(AquaItems.NEPTUNIUM_BOW.get(), builder ->
                 builder.set(DataComponents.MAX_DAMAGE, 1796));
+
     }
 
     // ---------------------------------------------
@@ -35,40 +39,52 @@ public class BowTweak {
     public static void onTooltip(ItemTooltipEvent event) {
 
         ItemStack stack = event.getItemStack();
-        if (!stack.is(AquaItems.NEPTUNIUM_BOW.get())) return;
-
         List<Component> tooltip = event.getToolTip();
         if (tooltip == null || tooltip.isEmpty()) return;
 
         // ----------------------------------------
-        //   Ligne de dégâts à afficher
+        //  TOOLTIP NEPTUNIUM BOW
         // ----------------------------------------
-        double baseDamage = 8.5;
-        Component dmgLine = Component.literal(baseDamage + " ")
-                .append(Component.translatable("attribute.name.generic.attack_damage"))
-                .withStyle(ChatFormatting.DARK_GREEN);
+        if (stack.is(AquaItems.NEPTUNIUM_BOW.get())) {
+
+            double baseDamage = 8.5;
+            Component dmgLine = Component.literal(baseDamage + " ")
+                    .append(Component.translatable("attribute.name.generic.attack_damage"))
+                    .withStyle(ChatFormatting.DARK_GREEN);
+
+            insertBeforeDurability(tooltip, dmgLine);
+            return;
+        }
 
         // ----------------------------------------
-        //   Trouver la position de la durabilité
+        //  TOOLTIP BOW VANILLA
         // ----------------------------------------
+        if (stack.is(net.minecraft.world.item.Items.BOW)) {
+
+            double baseDamage = 5.0; // dégâts du bow normal
+            Component dmgLine = Component.literal(baseDamage + " ")
+                    .append(Component.translatable("attribute.name.generic.attack_damage"))
+                    .withStyle(ChatFormatting.DARK_GREEN);
+
+            insertBeforeDurability(tooltip, dmgLine);
+        }
+    }
+
+    private static void insertBeforeDurability(List<Component> tooltip, Component line) {
         int durabilityIndex = -1;
 
         for (int i = 0; i < tooltip.size(); i++) {
-            String text = tooltip.get(i).getString().toLowerCase();
-
-            // "Durability", "Utilisations", "Uses" selon langue
-            if (text.contains("durab") || text.contains("utilisations") || text.contains("uses")) {
+            String lower = tooltip.get(i).getString().toLowerCase();
+            if (lower.contains("durab") || lower.contains("utilisations") || lower.contains("uses")) {
                 durabilityIndex = i;
                 break;
             }
         }
 
-        // Si pas trouvé, tout en bas
-        if (durabilityIndex == -1) durabilityIndex = tooltip.size();
-
-        // ----------------------------------------
-        //   INSÉRER juste avant durabilité
-        // ----------------------------------------
-        tooltip.add(durabilityIndex, dmgLine);
+        if (durabilityIndex == -1) {
+            tooltip.add(line); // fallback
+        } else {
+            tooltip.add(durabilityIndex, line); // le bon emplacement
+        }
     }
 }
