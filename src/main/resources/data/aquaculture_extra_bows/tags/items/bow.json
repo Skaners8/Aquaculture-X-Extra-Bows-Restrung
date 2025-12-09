@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "aquaculture_extra_bows:golden_bow",
+    "aquaculture_extra_bows:copper_bow",
+    "aquaculture_extra_bows:iron_bow",
+    "aquaculture_extra_bows:diamond_bow",
+    "aquaculture_extra_bows:netherite_bow"
+  ]
+}

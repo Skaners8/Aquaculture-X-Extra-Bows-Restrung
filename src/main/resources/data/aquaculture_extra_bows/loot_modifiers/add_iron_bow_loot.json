@@ -1,0 +1,34 @@
+{
+  "type": "neoforge:add_items",
+  "conditions": [
+    {
+      "condition": "neoforge:any_of",
+      "terms": [
+        { "condition": "neoforge:loot_table_id", "loot_table_id": "minecraft:chests/village/village_weaponsmith" },
+        { "condition": "neoforge:loot_table_id", "loot_table_id": "minecraft:chests/stronghold/corridor" },
+        { "condition": "neoforge:loot_table_id", "loot_table_id": "minecraft:chests/bastion/other" },
+        { "condition": "neoforge:loot_table_id", "loot_table_id": "minecraft:chests/buried_treasure" },
+        { "condition": "neoforge:loot_table_id", "loot_table_id": "minecraft:chests/end_city_treasure" }
+      ]
+    }
+  ],
+  "items": [
+    {
+      "item": "aquaculture_extra_bows:iron_bow",
+      "weight": 4,
+      "quality": 0
+    }
+  ],
+  "functions": [
+    {
+      "function": "minecraft:set_damage",
+      "damage": 0.5,
+      "conditions": [
+        {
+          "condition": "neoforge:loot_table_id",
+          "loot_table_id": "minecraft:chests/bastion/other"
+        }
+      ]
+    }
+  ]
+}
